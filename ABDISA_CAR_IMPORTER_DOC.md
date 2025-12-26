@@ -56,5 +56,19 @@ Abdisa-Car-Importer/
 2. Start development server: `npm run dev`
 3. Access at: `http://localhost:5174`
 
+## 🚀 Deployment to Vercel
+
+The project is already configured for **Vercel**. Follow these simple steps:
+
+1.  **Push to GitHub**: Upload this folder to a GitHub repository.
+2.  **Connect to Vercel**: 
+    - Go to [vercel.com](https://vercel.com).
+    - Import your GitHub repository.
+3.  **Settings**: Framework is **Vite**. Output directory is **dist**.
+4.  **Launch**: Vercel will build and host your site automatically!
+
+> [!TIP]
+> I have included a `vercel.json` file. This ensures your links like `/cars` and `/contact` always work perfectly on the web without "404 Page Not Found" errors.
+
 ---
 *Created with elite standards for Abdisa Car Importer. 2024.*

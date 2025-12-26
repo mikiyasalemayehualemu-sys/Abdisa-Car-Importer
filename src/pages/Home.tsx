@@ -142,42 +142,57 @@ export default function Home() {
                             animate="visible"
                             className="relative w-full max-w-3xl"
                         >
-                            {/* FX: Smoke for ICE */}
-                            <div className="absolute left-0 bottom-1/4 w-full h-full pointer-events-none overflow-visible">
-                                {[...Array(6)].map((_, i) => (
-                                    <motion.div
-                                        key={`smoke-${i}`}
-                                        custom={i}
-                                        variants={smokeVariants}
-                                        animate="animate"
-                                        className="absolute left-10 bottom-0 w-12 h-12 bg-text-main/10 blur-xl rounded-full"
-                                    />
-                                ))}
-                            </div>
+                            {/* Feature Detection: Logic to detect if car is Electric or Hybrid */}
+                            {(() => {
+                                const featuredCar = { specs: ["Diesel"] }; // Toggle this manually or connect to state
+                                const isEV = featuredCar.specs.some(s => s.includes('Electric') || s.includes('e-POWER'));
+                                const isICE = !isEV;
 
-                            {/* FX: Electric Aura for EVs */}
-                            <div className="absolute inset-0 pointer-events-none">
-                                <motion.div
-                                    animate={{
-                                        boxShadow: [
-                                            "0 0 20px rgba(6, 182, 212, 0)",
-                                            "0 0 50px rgba(6, 182, 212, 0.3)",
-                                            "0 0 20px rgba(6, 182, 212, 0)"
-                                        ]
-                                    }}
-                                    transition={{ duration: 2, repeat: Infinity }}
-                                    className="absolute inset-0 rounded-3xl"
-                                />
-                                {[...Array(4)].map((_, i) => (
-                                    <motion.div
-                                        key={`spark-${i}`}
-                                        custom={i}
-                                        variants={sparkVariants}
-                                        animate="animate"
-                                        className="absolute left-1/2 top-1/2 w-1 h-8 bg-cyan-400 blur-[1px] rounded-full"
-                                    />
-                                ))}
-                            </div>
+                                return (
+                                    <>
+                                        {/* FX: Smoke for ICE */}
+                                        {isICE && (
+                                            <div className="absolute left-0 bottom-1/4 w-full h-full pointer-events-none overflow-visible">
+                                                {[...Array(6)].map((_, i) => (
+                                                    <motion.div
+                                                        key={`smoke-${i}`}
+                                                        custom={i}
+                                                        variants={smokeVariants}
+                                                        animate="animate"
+                                                        className="absolute left-10 bottom-0 w-12 h-12 bg-text-main/10 blur-xl rounded-full"
+                                                    />
+                                                ))}
+                                            </div>
+                                        )}
+
+                                        {/* FX: Electric Aura for EVs */}
+                                        {isEV && (
+                                            <div className="absolute inset-0 pointer-events-none">
+                                                <motion.div
+                                                    animate={{
+                                                        boxShadow: [
+                                                            "0 0 20px rgba(6, 182, 212, 0)",
+                                                            "0 0 50px rgba(6, 182, 212, 0.3)",
+                                                            "0 0 20px rgba(6, 182, 212, 0)"
+                                                        ]
+                                                    }}
+                                                    transition={{ duration: 2, repeat: Infinity }}
+                                                    className="absolute inset-0 rounded-3xl"
+                                                />
+                                                {[...Array(4)].map((_, i) => (
+                                                    <motion.div
+                                                        key={`spark-${i}`}
+                                                        custom={i}
+                                                        variants={sparkVariants}
+                                                        animate="animate"
+                                                        className="absolute left-1/2 top-1/2 w-1 h-8 bg-cyan-400 blur-[1px] rounded-full"
+                                                    />
+                                                ))}
+                                            </div>
+                                        )}
+                                    </>
+                                );
+                            })()}
 
                             <div className="absolute -inset-10 bg-brand-blue/20 blur-[100px] rounded-full opacity-50"></div>
 
