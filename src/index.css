@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --brand-black: #0a0a0a;
+  --brand-dark: #171717;
+  --brand-blue: #2563eb;
+  --brand-red: #dc2626;
+  --brand-slate: #f8fafc;
+  --brand-white: #ffffff;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --map-filter: grayscale(1) contrast(1.2) opacity(0.8);
+  color-scheme: light;
+}
+
+.dark {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #171717;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --map-filter: invert(90%) hue-rotate(180deg) contrast(90%);
+  color-scheme: dark;
+}
+
+@theme {
+  --color-brand-black: var(--brand-black);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-red: var(--brand-red);
+  --color-brand-slate: var(--brand-slate);
+
+  --color-bg-main: var(--bg-primary);
+  --color-bg-alt: var(--bg-secondary);
+  --color-text-main: var(--text-primary);
+  --color-text-alt: var(--text-secondary);
+  --color-border-main: var(--border-color);
+
+  --animate-drive-in: drive 1.5s ease-out forwards;
+
+  @keyframes drive {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  @apply font-sans antialiased overflow-x-hidden transition-colors duration-300;
+}
+
+::selection {
+  background-color: var(--brand-blue);
+  color: white;
+}
+
+.glass-premium {
+  @apply bg-bg-alt/60 backdrop-blur-xl border border-border-main;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--bg-secondary);
+  @apply rounded-full border-2 border-transparent hover:bg-brand-blue transition-colors;
+}
+
+@layer components {
+  .btn-primary {
+    background-color: var(--brand-blue);
+    @apply px-8 py-3 text-white rounded-lg font-bold hover:bg-blue-700 transition-all active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .btn-secondary {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    @apply px-8 py-3 border border-border-main rounded-lg font-bold hover:bg-bg-alt/5 transition-all active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .btn-whatsapp {
+    @apply px-8 py-3 bg-[#25D366] text-white rounded-lg font-bold hover:bg-[#20bd5a] transition-all active:scale-95 flex items-center justify-center gap-2;
+  }
+}
